@@ -3,56 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的部落格</title>
+  <meta name="robots" content="noindex, nofollow">
+  <title>Claudia's Blog</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header>
-    <div class="container">
-      <a href="index.html" class="site-title">My Blog</a>
-      <nav>
-        <a href="index.html">首頁</a>
-        <a href="about.html">關於我</a>
-        <button class="theme-toggle" aria-label="切換主題">🌙</button>
-      </nav>
-    </div>
+    <div class="site-title">claudia's blog</div>
+    <nav>
+      <a href="index.html" class="active">文章</a>
+      <a href="about.html">關於</a>
+    </nav>
   </header>
 
+  <section class="intro">
+    <p>書寫是為了記住那些容易遺忘的事。這裡收錄日常的觀察、閱讀與感受。</p>
+  </section>
+
   <main>
-    <section class="hero">
-      <h1>歡迎來到我的部落格</h1>
-      <p>在這裡記錄我的學習、生活與思考。</p>
+    <section class="category-section">
+      <div class="category-title">記憶書寫</div>
+      <ul class="post-list">
+        <li>
+          <a href="posts/memory-01.html" class="post-list-item">
+            <img src="images/cover-memory-01.svg" alt="" class="post-cover-thumb">
+            <div class="post-info">
+              <h3>那年夏天的氣味</h3>
+              <span class="post-date">2026.05.15</span>
+            </div>
+          </a>
+        </li>
+      </ul>
     </section>
 
-    <ul class="post-list">
-      <li class="post-item">
-        <h2><a href="posts/hello-world.html">你好，世界！</a></h2>
-        <div class="post-meta">2026 年 5 月 17 日</div>
-        <p class="post-excerpt">這是我的第一篇部落格文章，分享建立這個網站的過程與心得。</p>
-        <div class="tags">
-          <span class="tag">隨筆</span>
-          <span class="tag">網站開發</span>
-        </div>
-      </li>
-      <li class="post-item">
-        <h2><a href="posts/learning-notes.html">學習筆記：靜態網站部署</a></h2>
-        <div class="post-meta">2026 年 5 月 17 日</div>
-        <p class="post-excerpt">記錄如何使用 GitHub Pages 部署靜態網站的步驟與注意事項。</p>
-        <div class="tags">
-          <span class="tag">技術</span>
-          <span class="tag">GitHub</span>
-        </div>
-      </li>
-    </ul>
+    <section class="category-section">
+      <div class="category-title">觀劇筆記</div>
+      <ul class="post-list">
+        <li>
+          <a href="posts/drama-01.html" class="post-list-item">
+            <img src="images/cover-drama-01.svg" alt="" class="post-cover-thumb">
+            <div class="post-info">
+              <h3>關於那些說不出口的溫柔</h3>
+              <span class="post-date">2026.05.10</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category-section">
+      <div class="category-title">個人隨筆</div>
+      <ul class="post-list">
+        <li>
+          <a href="posts/essay-01.html" class="post-list-item">
+            <div class="post-info">
+              <h3>寫給自己的備忘錄</h3>
+              <span class="post-date">2026.05.08</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 My Blog. All rights reserved.</p>
+    &copy; 2026 Claudia
   </footer>
-
-  <script src="js/main.js"></script>
 </body>
 </html>

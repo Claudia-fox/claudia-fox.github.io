@@ -75,6 +75,14 @@ nav a.active {
   border-bottom: 1px solid var(--border);
 }
 
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
 .intro p {
   font-size: 0.95rem;
   color: var(--text-muted);

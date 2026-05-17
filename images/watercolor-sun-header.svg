@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" width="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Watercolor sun half-sunk at the horizon">
+  <defs>
+    <filter id="wc-edge" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="31" result="noise"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+    </filter>
+    <filter id="wc-edge-soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="2" seed="38" result="noise"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="38" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+      <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+    </filter>
+    <filter id="wc-bloom" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"></feGaussianBlur>
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="34" result="n"></feTurbulence>
+      <feDisplacementMap in="blur" in2="n" scale="10"></feDisplacementMap>
+    </filter>
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="42"></feTurbulence>
+      <feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.32  0 0 0 0 0.18  0 0 0 0.18 0"></feColorMatrix>
+    </filter>
+    <radialGradient id="sun-grad" cx="50%" cy="46%" r="58%">
+      <stop offset="0%" stop-color="#faf5ec" stop-opacity="0.7"></stop>
+      <stop offset="22%" stop-color="#fce0c2" stop-opacity="0.96"></stop>
+      <stop offset="58%" stop-color="#f3b27a" stop-opacity="0.94"></stop>
+      <stop offset="88%" stop-color="#e8743a" stop-opacity="0.72"></stop>
+      <stop offset="100%" stop-color="#e8743a" stop-opacity="0.18"></stop>
+    </radialGradient>
+    <clipPath id="above-horizon"><rect x="0" y="0" width="1200" height="192.4"></rect></clipPath>
+    <clipPath id="below-horizon"><rect x="0" y="192.4" width="1200" height="67.6"></rect></clipPath>
+  </defs>
+
+  
+  <rect x="0" y="0" width="1200" height="260" fill="#faf5ec"></rect>
+  
+  <rect x="0" y="192.4" width="1200" height="67.6" fill="#f3e9d6" opacity="0.55"></rect>
+
+  
+  <g clip-path="url(#above-horizon)">
+    <circle cx="336" cy="192.4" r="229.5" fill="#f3b27a" opacity="0.38" filter="url(#wc-edge-soft)"></circle>
+    <circle cx="344" cy="186.4" r="182.25" fill="#e8743a" opacity="0.32" filter="url(#wc-edge-soft)"></circle>
+    <circle cx="340" cy="188.4" r="159.3" fill="#f3b27a" opacity="0.45" filter="url(#wc-edge-soft)"></circle>
+  </g>
+
+  
+  <g clip-path="url(#above-horizon)">
+    <circle cx="336" cy="186.4" r="137.7" fill="url(#sun-grad)" filter="url(#wc-edge)"></circle>
+    
+    <circle cx="261.75" cy="172.15" r="74.25" fill="#e8743a" opacity="0.10" filter="url(#wc-bloom)"></circle>
+    
+    <ellipse cx="383.25" cy="118.15" rx="37.8" ry="24.3" fill="#faf5ec" opacity="0.30" filter="url(#wc-edge-soft)"></ellipse>
+  </g>
+
+  
+  <g clip-path="url(#below-horizon)">
+    <ellipse cx="336" cy="196.4" rx="128.25" ry="24.3" fill="#e8743a" opacity="0.22" filter="url(#wc-edge-soft)"></ellipse>
+    <ellipse cx="342" cy="204.4" rx="94.5" ry="13.5" fill="#e8743a" opacity="0.18" filter="url(#wc-edge-soft)"></ellipse>
+  </g>
+
+  
+  <g opacity="0.35">
+    <line x1="0" y1="192.4" x2="1200" y2="192.4" stroke="#c84a18" stroke-width="1.2" filter="url(#wc-edge)"></line>
+  </g>
+
+  
+  <g filter="url(#wc-edge)" opacity="0.55">
+    <circle cx="39" cy="138.4" r="3" fill="#e8743a"></circle>
+    <circle cx="-1.5" cy="165.4" r="1.6" fill="#c84a18"></circle>
+    <circle cx="646.5" cy="138.4" r="2.4" fill="#e8743a"></circle>
+    <circle cx="687" cy="172.15" r="1.2" fill="#e8743a"></circle>
+    <circle cx="592.5" cy="77.65" r="1.8" fill="#f3b27a"></circle>
+    <circle cx="93" cy="71.9" r="1.2" fill="#f3b27a"></circle>
+  </g>
+
+  
+  <rect x="0" y="0" width="1200" height="260" filter="url(#paper-grain)" opacity="0.35"></rect>
+</svg>

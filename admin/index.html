@@ -393,6 +393,15 @@ function insertEntryInIndex(html, cat, title, date, slug) {
   return html.slice(0, tdEnd) + entry + html.slice(tdEnd);
 }
 
+function updateEntryInIndex(html, slug, title, date) {
+  const dispDate = date.replace(/-/g, '.');
+  const newEntry = `<a href="posts/${slug}.html" class="entry">\n      <span class="entry-title">${title}</span>\n      <span class="entry-date">${dispDate}</span>\n    </a>`;
+  return html.replace(
+    new RegExp(`<a href="posts/${slug}\\.html" class="entry">[\\s\\S]*?</a>`),
+    newEntry
+  );
+}
+
 /* ── Screen routing ── */
 function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -526,13 +535,14 @@ async function publish() {
     await ghPut(`posts/${slug}.html`, postHtml, existSha,
       `${existSha ? '更新' : '新增'}文章：${title}`);
 
-    // Add to index.html only for brand-new posts
-    if (!existSha) {
-      setEdStatus('更新首頁中…', 'inf');
-      const idxFile = await ghGet('index.html');
-      const newIdx  = insertEntryInIndex(b64dec(idxFile.content), cat, title, date, slug);
-      await ghPut('index.html', newIdx, idxFile.sha, `首頁新增：${title}`);
-    }
+    // Update index.html: insert for new posts, update title/date for existing
+    setEdStatus('更新首頁中…', 'inf');
+    const idxFile = await ghGet('index.html');
+    const currentIdx = b64dec(idxFile.content);
+    const newIdx = existSha
+      ? updateEntryInIndex(currentIdx, slug, title, date)
+      : insertEntryInIndex(currentIdx, cat, title, date, slug);
+    await ghPut('index.html', newIdx, idxFile.sha, `${existSha ? '更新' : '新增'}首頁：${title}`);
 
     setEdStatus('✓ 發佈成功！約 1–2 分鐘後可在網站看到。', 'ok');
   } catch(e) {

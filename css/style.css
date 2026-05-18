@@ -169,8 +169,11 @@ a {
 
 .category-nav a.active {
   color: var(--accent-warm);
-  background: var(--accent-warm-faint);
-  border-color: var(--accent-warm-light);
+  background: rgba(242, 232, 224, 0.55);
+  border-color: rgba(212, 149, 110, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 8px rgba(196, 112, 75, 0.08);
 }
 
 /* Sections */

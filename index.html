@@ -1,77 +1,91 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Claudia's Blog</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=2">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Claudia's Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+TC:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
-  <img src="images/watercolor-sun-header.svg" alt="" class="banner">
-  <header>
+
+<img src="images/watercolor-sun-header.svg" alt="" class="banner">
+
+<div class="container">
+
+  <header class="header">
     <div class="site-title">Claudia's Blog</div>
-    <nav>
+    <nav class="nav">
       <a href="index.html" class="active">文章</a>
       <a href="about.html">關於</a>
     </nav>
   </header>
 
-  <section class="intro">
-    <img src="images/avatar.jpg" alt="Claudia" class="avatar">
-    <p>書寫是為了記住那些容易遺忘的事。這裡收錄日常的觀察、閱讀與感受。</p>
-  </section>
+  <div class="profile">
+    <div class="avatar"></div>
+    <p class="tagline">書寫是為了記住那些容易遺忘的事。這裡收錄日常的觀察、閱讀與感受。</p>
+  </div>
 
-  <main>
-    <section class="category-section">
-      <div class="category-title">記憶書寫</div>
-      <ul class="post-list">
-        <li>
-          <a href="posts/memory-taste.html" class="post-list-item">
-            <div class="post-info">
-              <h3>記憶味蕾</h3>
-              <span class="post-date">2026.05.17</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </section>
+  <div class="category-nav">
+    <a class="active" data-filter="all">全部</a>
+    <a data-filter="memory">記憶書寫</a>
+    <a data-filter="drama">觀劇筆記</a>
+    <a data-filter="essay">個人隨筆</a>
+  </div>
 
-    <section class="category-section">
-      <div class="category-title">觀劇筆記</div>
-      <ul class="post-list">
-        <li>
-          <a href="posts/drama-01.html" class="post-list-item">
-            <img src="images/cover-drama-01.svg" alt="" class="post-cover-thumb">
-            <div class="post-info">
-              <h3>關於那些說不出口的溫柔</h3>
-              <span class="post-date">2026.05.10</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </section>
+  <div class="section" data-category="memory">
+    <div class="section-title">記憶書寫</div>
+    <a href="posts/memory-taste.html" class="entry">
+      <span class="entry-title">記憶味蕾</span>
+      <span class="entry-date">2026.05.17</span>
+    </a>
+    <a href="posts/memory-summer-scent.html" class="entry">
+      <span class="entry-title">那年夏天的氣味</span>
+      <span class="entry-date">2026.05.15</span>
+    </a>
+  </div>
 
-    <section class="category-section">
-      <div class="category-title">個人隨筆</div>
-      <ul class="post-list">
-        <li>
-          <a href="posts/essay-01.html" class="post-list-item">
-            <div class="post-info">
-              <h3>寫給自己的備忘錄</h3>
-              <span class="post-date">2026.05.08</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </section>
-  </main>
+  <div class="section" data-category="drama">
+    <div class="section-title">觀劇筆記</div>
+    <a href="posts/drama-01.html" class="entry">
+      <span class="entry-title">關於那些說不出口的溫柔</span>
+      <span class="entry-date">2026.05.10</span>
+    </a>
+  </div>
 
-  <footer>
-    &copy; 2026 Claudia
+  <div class="section" data-category="essay">
+    <div class="section-title">個人隨筆</div>
+    <a href="posts/essay-01.html" class="entry">
+      <span class="entry-title">寫給自己的備忘錄</span>
+      <span class="entry-date">2026.05.08</span>
+    </a>
+  </div>
+
+  <footer class="footer">
+    <span class="footer-text">&copy; 2026 Claudia</span>
   </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.category-nav a').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.category-nav a').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      document.querySelectorAll('.section').forEach(section => {
+        if (filter === 'all' || section.dataset.category === filter) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>

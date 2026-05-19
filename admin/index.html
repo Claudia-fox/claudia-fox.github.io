@@ -51,6 +51,11 @@
       border: 1px solid #d8d3ce;
     }
     .btn-ghost:hover { background: #f0ece8; }
+    .btn-danger {
+      background: transparent; color: #b94040;
+      border: 1px solid #e8c0c0;
+    }
+    .btn-danger:hover { background: #fdf0f0; border-color: #d08080; }
     .btn-sm { padding: 5px 12px; font-size: 0.8rem; }
 
     /* ── Screens ── */
@@ -495,7 +500,10 @@ async function loadList() {
             <div class="post-row-title">${title}</div>
             <div class="post-row-meta"><span class="tag">${label}</span>${date}</div>
           </div>
-          <button class="btn btn-ghost btn-sm" onclick="goEditor('${slug}')">編輯</button>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-ghost btn-sm" onclick="goEditor('${slug}')">編輯</button>
+            <button class="btn btn-danger btn-sm" onclick="deletePost('${slug}', '${title}')">刪除</button>
+          </div>
         </div>`;
       }).join('');
       if (rows) out += `<div class="cat-group"><div class="cat-label">${label}</div>${rows}</div>`;
@@ -504,6 +512,49 @@ async function loadList() {
     el.innerHTML = out || '<div class="loading-msg" style="color:#ccc">尚無文章</div>';
   } catch(e) {
     el.innerHTML = `<div style="color:#c44;padding:20px">載入失敗：${e.message}</div>`;
+  }
+}
+
+/* ── Delete ── */
+async function ghDelete(path, sha, msg) {
+  const body = { message: msg, sha: sha, branch: BRANCH };
+  const r = await fetch(`${GH_API}/repos/${REPO}/contents/${path}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      Accept: 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) {
+    const e = await r.json().catch(() => ({}));
+    throw new Error(e.message || `GitHub ${r.status}`);
+  }
+}
+
+function removeEntryFromIndex(html, slug) {
+  return html.replace(
+    new RegExp(`\s*<a href="posts/${slug}\.html" class="entry">[\s\S]*?</a>`),
+    ''
+  );
+}
+
+async function deletePost(slug, title) {
+  if (!confirm(`確定要刪除《${title}》嗎？
+
+此動作無法復原。`)) return;
+  try {
+    // Delete post file
+    const file = await ghGet(`posts/${slug}.html`);
+    await ghDelete(`posts/${slug}.html`, file.sha, `刪除文章：${title}`);
+    // Update index.html
+    const idxFile = await ghGet('index.html');
+    const newIdx = removeEntryFromIndex(b64dec(idxFile.content), slug);
+    await ghPut('index.html', newIdx, idxFile.sha, `首頁移除：${title}`);
+    loadList();
+  } catch(e) {
+    alert('刪除失敗：' + e.message);
   }
 }
 

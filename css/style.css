@@ -69,6 +69,8 @@ a {
   font-weight: 400;
   letter-spacing: 0.03em;
   color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .nav {

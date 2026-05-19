@@ -79,12 +79,13 @@ a {
 }
 
 .nav a {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 0.9rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
   font-weight: 400;
   color: var(--accent);
   text-decoration: none;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   transition: color 0.3s ease;
 }
 

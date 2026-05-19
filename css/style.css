@@ -63,10 +63,11 @@ a {
 }
 
 .site-title {
-  font-family: 'Lora', 'Noto Serif TC', serif;
-  font-size: 1.75rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.9rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
   color: var(--text-primary);
 }
 

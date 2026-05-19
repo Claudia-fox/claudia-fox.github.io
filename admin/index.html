@@ -535,7 +535,7 @@ async function ghDelete(path, sha, msg) {
 
 function removeEntryFromIndex(html, slug) {
   return html.replace(
-    new RegExp(`\s*<a href="posts/${slug}\.html" class="entry">[\s\S]*?</a>`),
+    new RegExp(`\\s*<a href="posts/${slug}\\.html" class="entry">[\\s\\S]*?</a>`),
     ''
   );
 }

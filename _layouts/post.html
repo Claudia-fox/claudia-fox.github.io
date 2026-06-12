@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include head.html %}
+</head>
+<body>
+  <div class="container">
+    {% include header.html %}
+  </div>
+
+  <article class="post-content">
+    <a href="/" class="back-link">&larr; 返回</a>
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta">
+      {{ page.date | date: "%Y.%m.%d" }} &middot; <span class="category-label">{{ page.categories | first }}</span>
+    </div>
+
+{{ content }}
+
+    <nav class="post-nav">
+      <div class="post-nav-prev">
+        {% if page.previous %}
+        <a href="{{ page.previous.url }}"><span class="post-nav-label">上一篇</span>{{ page.previous.title }}</a>
+        {% endif %}
+      </div>
+      <div class="post-nav-next">
+        {% if page.next %}
+        <a href="{{ page.next.url }}"><span class="post-nav-label">下一篇</span>{{ page.next.title }}</a>
+        {% endif %}
+      </div>
+    </nav>
+  </article>
+
+  <div class="container">
+    {% include footer.html %}
+  </div>
+</body>
+</html>

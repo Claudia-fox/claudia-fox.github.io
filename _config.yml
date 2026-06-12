@@ -1,0 +1,18 @@
+title: Claudia's Time
+description: 書寫是為了記住那些容易遺忘的事。這裡收錄日常的觀察、閱讀與感受。
+url: "https://claudia-fox.github.io"
+lang: zh-Hant
+timezone: Asia/Taipei
+
+markdown: kramdown
+permalink: /posts/:title.html
+
+plugins:
+  - jekyll-feed
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post

@@ -243,6 +243,20 @@ a {
   margin-left: 24px;
 }
 
+.entry-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.entry-summary {
+  font-size: 0.84rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  line-height: 1.7;
+}
+
 /* Footer */
 .footer {
   padding: 60px 0 48px;
@@ -364,6 +378,44 @@ article.post-content ol {
 
 article.post-content li {
   margin-bottom: 0.4rem;
+}
+
+/* Post prev/next nav */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--divider);
+}
+
+.post-nav-prev,
+.post-nav-next {
+  max-width: 48%;
+}
+
+.post-nav-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.post-nav a {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.post-nav a:hover {
+  color: var(--accent);
+}
+
+.post-nav-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
 }
 
 /* About page */

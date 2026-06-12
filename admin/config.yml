@@ -1,0 +1,47 @@
+backend:
+  name: github
+  repo: Claudia-fox/claudia-fox.github.io
+  branch: main
+  base_url: WORKER_URL_PLACEHOLDER
+
+site_url: https://claudia-fox.github.io
+display_url: https://claudia-fox.github.io
+
+media_folder: images
+public_folder: /images
+
+collections:
+  - name: posts
+    label: 文章
+    label_singular: 文章
+    folder: _posts
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "posts/{{slug}}.html"
+    sortable_fields:
+      - date
+      - title
+    summary: "{{title}} — {{date}}"
+    fields:
+      - name: title
+        label: 標題
+        widget: string
+      - name: date
+        label: 日期
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: YYYY-MM-DD
+        time_format: false
+      - name: category
+        label: 分類
+        widget: select
+        options:
+          - 記憶書寫
+          - 觀劇筆記
+          - 個人隨筆
+      - name: summary
+        label: 摘要（首頁顯示的一句話）
+        widget: string
+      - name: body
+        label: 內文
+        widget: markdown

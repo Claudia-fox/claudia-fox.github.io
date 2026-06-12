@@ -34,5 +34,26 @@
   <div class="container">
     {% include footer.html %}
   </div>
+
+  <script>
+    document.querySelectorAll('.post-content img').forEach(img => {
+      img.addEventListener('click', () => {
+        const overlay = document.createElement('div');
+        overlay.className = 'lightbox';
+        const big = document.createElement('img');
+        big.src = img.src;
+        big.alt = img.alt;
+        overlay.appendChild(big);
+        const close = () => {
+          overlay.remove();
+          document.removeEventListener('keydown', onKey);
+        };
+        const onKey = e => { if (e.key === 'Escape') close(); };
+        overlay.addEventListener('click', close);
+        document.addEventListener('keydown', onKey);
+        document.body.appendChild(overlay);
+      });
+    });
+  </script>
 </body>
 </html>

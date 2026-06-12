@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include head.html %}
+</head>
+<body>
+
+<img src="/images/watercolor-sun-header.svg" alt="" class="banner">
+
+<div class="container">
+
+  {% include header.html %}
+
+  <div class="profile">
+    <div class="avatar"></div>
+    <p class="tagline">書寫是為了記住那些容易遺忘的事。這裡收錄日常的觀察、閱讀與感受。</p>
+  </div>
+
+  <div class="category-nav">
+    <a class="active" data-filter="all">全部</a>
+    <a data-filter="memory">記憶書寫</a>
+    <a data-filter="drama">觀劇筆記</a>
+    <a data-filter="essay">個人隨筆</a>
+  </div>
+
+  {% assign category_defs = "memory|記憶書寫;drama|觀劇筆記;essay|個人隨筆" | split: ";" %}
+  {% for def in category_defs %}
+  {% assign parts = def | split: "|" %}
+  {% assign category_name = parts[1] %}
+  {% assign category_posts = site.posts | where_exp: "p", "p.categories contains category_name" %}
+  {% if category_posts.size > 0 %}
+  <div class="section" data-category="{{ parts[0] }}">
+    <div class="section-title">{{ category_name }}</div>
+    {% for post in category_posts %}
+    <a href="{{ post.url }}" class="entry">
+      <span class="entry-main">
+        <span class="entry-title">{{ post.title }}</span>
+        {% if post.summary %}<span class="entry-summary">{{ post.summary }}</span>{% endif %}
+      </span>
+      <span class="entry-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endfor %}
+
+  {% include footer.html %}
+
+</div>
+
+<script>
+  document.querySelectorAll('.category-nav a').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.category-nav a').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      document.querySelectorAll('.section').forEach(section => {
+        if (filter === 'all' || section.dataset.category === filter) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

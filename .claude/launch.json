@@ -4,8 +4,8 @@
     {
       "name": "blog",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/Users/yoonsu/Claude/blog"],
-      "port": 8080
+      "runtimeArgs": ["-m", "http.server", "4001", "--directory", "/Users/chenyunxiu/claudia-fox.github.io/_site"],
+      "port": 4001
     }
   ]
 }

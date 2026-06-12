@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Claudia-fox/claudia-fox.github.io
   branch: main
-  base_url: WORKER_URL_PLACEHOLDER
+  base_url: https://sveltia-cms-auth.r92123012.workers.dev
 
 site_url: https://claudia-fox.github.io
 display_url: https://claudia-fox.github.io
